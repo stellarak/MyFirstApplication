@@ -1,10 +1,64 @@
-<!doctype html?>
+<!doctype html>
 <html>
 <head>
-	<title> My First Application</title>
+	<title> Search</title>
+<script>
+var statusElem = document.getElementById("status");
 
+setInterval(function () {
+  if (!navigator.onLine){
+  alert("You are offline! Pease make a connection.");
+  }
+}, 4000);
+</script>
+
+<script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for PhoneGap to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // PhoneGap is ready
+    //
+    function onDeviceReady(form) {
+        // find all contacts with 'Bob' in any name field
+        var options = new ContactFindOptions();
+        var lname = form.inputbox.value;
+        options.filter=lname;
+        var fields = ["displayName", "name"];
+        alert("You typed: "+ option.filter);
+        navigator.contacts.find(fields, onSuccess, onError, options);
+    }
+
+    // onSuccess: Get a snapshot of the current contacts
+    //
+    function onSuccess(contacts) {
+        for (var i=0; i<contacts.length; i++) {
+            console.log("Display Name = " + contacts[i].displayName);
+        }
+    }
+
+    // onError: Failed to get the contacts
+    //
+    function onError(contactError) {
+        alert('onError!');
+    }
+
+    </script>
+
+</head>
 <body>
-	<h1>This should be a form<h1>
+
+
+<form action="SearchLastname.html">
+
+Last name:<br>
+<input type="text" name="lastname" >
+<br><br>
+<input type="submit" value="Search" onClick="onDeviceReady(this.form)">
+</form>
+
 
 </body>
 </html>
