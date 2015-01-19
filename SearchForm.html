@@ -17,15 +17,15 @@ setInterval(function () {
 
     // Wait for PhoneGap to load
     //
-    document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", findcontact, false);
 
     // PhoneGap is ready
     //
-    function onDeviceReady(form) {
+    function findcontact() {
         // find all contacts with 'Bob' in any name field
+        console.log(navigator.contacts);
         var options = new ContactFindOptions();
-        var lname = form.inputbox.value;
-        options.filter=lname;
+        options.filter="Bob";
         var fields = ["displayName", "name"];
         alert("You typed: "+ option.filter);
         navigator.contacts.find(fields, onSuccess, onError, options);
@@ -34,8 +34,8 @@ setInterval(function () {
     // onSuccess: Get a snapshot of the current contacts
     //
     function onSuccess(contacts) {
-        for (var i=0; i<contacts.length; i++) {
-            console.log("Display Name = " + contacts[i].displayName);
+        for (var i=0; contacts.length>i; i++) {
+            console.log("Display Name = " + contacts[i].displayName + "tel=" + contacts[i].phoneNumbers[i].value);
         }
     }
 
@@ -56,7 +56,7 @@ setInterval(function () {
 Last name:<br>
 <input type="text" name="lastname" >
 <br><br>
-<input type="submit" value="Search" onClick="onDeviceReady(this.form)">
+<input type="submit" value="Search" onClick="findcontact()">
 </form>
 
 
