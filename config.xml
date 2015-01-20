@@ -89,4 +89,8 @@
 <plugins>
 <plugin name="WebIntent" value="com.borismus.webintent.WebIntent" />
 </plugins>
+<plugins>
+<plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
+</plugins>
+
 </widget>
