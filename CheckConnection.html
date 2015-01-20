@@ -8,17 +8,19 @@
 
     // Wait for device API libraries to load
 
-    document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", checkConnection, false);
 
     // device APIs are available
 
-    function onDeviceReady() {
-  alert('Device is ready' );
+ <!--   function onDeviceReady() {
+  		alert('Device is ready' );
         checkConnection();
-    }
+    }-->
 
         function checkConnection() {
-            var networkState = navigator.connection.type;
+        alert('Device is ready' );
+
+           <!-- var networkState = navigator.connection.type;
 
             var states = {};
             states[Connection.UNKNOWN]  = 'Unknown connection';
@@ -29,8 +31,9 @@
             states[Connection.CELL_4G]  = 'Cell 4G connection';
             states[Connection.CELL]     = 'Cell generic connection';
             states[Connection.NONE]     = 'No network connection';
-alert('Device is ready' );
-            alert('Connection type: ' + states[networkState]);
+           alert('Connection type: ' + states[networkState]);-->
+            var  networkConnectionType =  navigator.connection.type;
+               alert('Connection Type: ' +  networkConnectionType );
         }
 
     </script>
