@@ -12,15 +12,15 @@
 
     // device APIs are available
 
- <!--   function onDeviceReady() {
+		function onDeviceReady() {
   		alert('Device is ready' );
         checkConnection();
-    }-->
+    }
 
         function checkConnection() {
         alert('Device is ready' );
 
-           <!-- var networkState = navigator.connection.type;
+            var networkState = navigator.connection.type;
 
             var states = {};
             states[Connection.UNKNOWN]  = 'Unknown connection';
@@ -31,9 +31,7 @@
             states[Connection.CELL_4G]  = 'Cell 4G connection';
             states[Connection.CELL]     = 'Cell generic connection';
             states[Connection.NONE]     = 'No network connection';
-           alert('Connection type: ' + states[networkState]);-->
-            var  networkConnectionType =  navigator.connection.type;
-               alert('Connection Type: ' +  networkConnectionType );
+           alert('Connection type: ' + states[networkState]);
         }
 
     </script>

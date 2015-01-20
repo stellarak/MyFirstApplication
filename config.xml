@@ -84,6 +84,7 @@
 <feature name="InAppBrowser">
   <param name="android-package" value="org.apache.cordova.InAppBrowser"/>
 </feature>
+<feature name="http://api.phonegap.com/1.0/network"/>
 <!-- Deprecated plugins element. Remove in 3.0 -->
 <plugins>
 <plugin name="WebIntent" value="com.borismus.webintent.WebIntent" />
