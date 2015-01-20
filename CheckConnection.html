@@ -6,22 +6,55 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
 
+
     // Wait for device API libraries to load
 
-    document.addEventListener("deviceready", checkConnection, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     // device APIs are available
 
 		function onDeviceReady() {
-  		alert('Device is ready' );
-        checkConnection();
-    }
+
+
+  		alert('Raedy!' );
+			if (navigator.connection.type == Connection.NONE)
+				{
+				 alert('Please Connect!' );
+				}
+			else
+				{
+					 checkConnection();
+				 }
+		}
+
 
         function checkConnection() {
-        alert('Device is ready' );
 
-            var networkState = navigator.connection.type;
+            var State = navigator.connection.type;
 
+			if (State == Connection.ETHERNET)
+			{
+				console.log("Device is connected to Ethernet");
+			}
+			else if(State == Connection.WIFI)
+			{
+				console.log("Device is connected to WiFi");
+			}
+			else if(State == Connection.CELL_2G)
+			{
+				console.log("Device is connected to 2G");
+			}
+			else if(State == Connection.CELL_3G)
+			{
+				console.log("Device is connected to 3G");
+			}
+			else if(State == Connection.CELL4G)
+			{
+				console.log("Device is connected to 4G");
+			}
+
+		}
+			<!--)
             var states = {};
             states[Connection.UNKNOWN]  = 'Unknown connection';
             states[Connection.ETHERNET] = 'Ethernet connection';
@@ -32,7 +65,7 @@
             states[Connection.CELL]     = 'Cell generic connection';
             states[Connection.NONE]     = 'No network connection';
            alert('Connection type: ' + states[networkState]);
-        }
+        }-->
 
     </script>
   </head>
