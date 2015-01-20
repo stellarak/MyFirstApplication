@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <widget xmlns     = "http://www.w3.org/ns/widgets"
-    id        = "io.cordova.helloCordova"
+    id        = "com.phonegap.helloworld"
     version   = "2.0.0">
 <name>APP NAME</name>
 

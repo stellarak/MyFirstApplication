@@ -4,72 +4,17 @@
     <title>Check connection</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-    <script type="text/javascript" charset="utf-8">
+    <script type="text/javascript" charset="utf-8"src="script/Connection.js"> </script>
 
-
-    // Wait for device API libraries to load
-
-    document.addEventListener("deviceready", checkConnection, false);
-
-    // device APIs are available
-
-		function onDeviceReady() {
-
-
-  		alert('Ready!' );
-			if (navigator.connection.type == Connection.NONE)
-				{
-				 alert('Please Connect!' );
-				}
-			else
-				{
-					 checkConnection();
-				 }
-		}
-
-
-        function checkConnection() {
-			alert('you are Ready!' );
-            var State = navigator.connection.type;
-
-			if (State == Connection.ETHERNET)
-			{
-				console.log("Device is connected to Ethernet");
-			}
-			else if(State == Connection.WIFI)
-			{
-				console.log("Device is connected to WiFi");
-			}
-			else if(State == Connection.CELL_2G)
-			{
-				console.log("Device is connected to 2G");
-			}
-			else if(State == Connection.CELL_3G)
-			{
-				console.log("Device is connected to 3G");
-			}
-			else if(State == Connection.CELL4G)
-			{
-				console.log("Device is connected to 4G");
-			}
-
-		}
-			<!--)
-            var states = {};
-            states[Connection.UNKNOWN]  = 'Unknown connection';
-            states[Connection.ETHERNET] = 'Ethernet connection';
-            states[Connection.WIFI]     = 'WiFi connection';
-            states[Connection.CELL_2G]  = 'Cell 2G connection';
-            states[Connection.CELL_3G]  = 'Cell 3G connection';
-            states[Connection.CELL_4G]  = 'Cell 4G connection';
-            states[Connection.CELL]     = 'Cell generic connection';
-            states[Connection.NONE]     = 'No network connection';
-           alert('Connection type: ' + states[networkState]);
-        }-->
-
-    </script>
   </head>
   <body>
 
+		<form action="SearchLastname.html">
+		Last name:<br>
+		<input type="text" name="lastname" >
+		<br><br>
+		<input type="submit" value="Search" onClick="findcontact()">
+
+</form>
   </body>
 </html>
