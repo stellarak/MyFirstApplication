@@ -9,14 +9,14 @@
 
     // Wait for device API libraries to load
 
-    document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", checkConnection, false);
 
     // device APIs are available
 
 		function onDeviceReady() {
 
 
-  		alert('Raedy!' );
+  		alert('Ready!' );
 			if (navigator.connection.type == Connection.NONE)
 				{
 				 alert('Please Connect!' );
@@ -29,7 +29,7 @@
 
 
         function checkConnection() {
-
+			alert('you are Ready!' );
             var State = navigator.connection.type;
 
 			if (State == Connection.ETHERNET)
