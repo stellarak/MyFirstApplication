@@ -9,7 +9,7 @@
 	//Every 5sec check if there is a connection
 			setInterval(function(){
 					//If there is no connection there is an alert
-			if (navigator.connection.type == Connection.NONE)
+			if (navigator.network.connection.type == Connection.NONE)
 				{
 				 alert('Please Connect!' );
 
@@ -27,7 +27,7 @@
         function checkConnection() {
 
         		//The message depends on the type of the connection
-            var State = navigator.connection.type;
+            var State = navigator.network.connection.type;
 
 			if (State == Connection.ETHERNET)
 			{
@@ -45,7 +45,7 @@
 			{
 				console.log("Device is connected to 3G");
 			}
-			else if(State == Connection.CELL4G)
+			else if(State == Connection.CELL_4G)
 			{
 				console.log("Device is connected to 4G");
 			}
