@@ -9,7 +9,7 @@
 	//Every 5sec check if there is a connection
 			setInterval(function(){
 					//If there is no connection there is an alert
-			if (navigator.network.connection.type == Connection.NONE)
+			if (navigator.connection.type == Connection.NONE)
 				{
 				 alert('Please Connect!' );
 
@@ -24,10 +24,10 @@
 		}
 
 
-        function checkConnection() {
+        function checkConnection() {  //checkConnection specifies thetype ofconnection
 
         		//The message depends on the type of the connection
-            var State = navigator.network.connection.type;
+            var State = navigator.connection.type;
 
 			if (State == Connection.ETHERNET)
 			{
@@ -35,7 +35,7 @@
 			}
 			else if(State == Connection.WIFI)
 			{
-				console.log("Device is connected to WiFi");
+				alert("Device is connected to WiFi");
 			}
 			else if(State == Connection.CELL_2G)
 			{
