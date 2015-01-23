@@ -4,12 +4,41 @@
     <title>Searching</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-  <script type="text/javascript" charset="utf-8" src="script/Connection.js"> </script>
+ <script type="text/javascript" charset="utf-8" src="script/Connection.js"> </script>
     <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
     <script type="text/javascript" charset="utf-8">
 
+ <script>
+
+   // Wait for device API libraries to load
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+
+		function onDeviceReady() {
+
+	//Every 5sec check if there is a connection
+			setInterval(function(){
+					//If there is no connection there is an alert
+			if (navigator.connection.type == Connection.NONE)
+				{
+				 alert('Please Connect!' );
+
+				}
+			else
+					//If there is connection call checkConnection
+				{
+					 checkConnection();
+				 }
+
+			},5000);
+		}
+ </script>
+
     // Wait for PhoneGap to load
     //
+
     document.addEventListener("deviceready", findcontact, false);
 
     // PhoneGap is ready
@@ -20,7 +49,6 @@
         var options = new ContactFindOptions();
         options.filter=form.lastname.value;
         var fields = ["displayName", "name"];
-        //alert("You typed: "+ option.filter);
         navigator.contacts.find(fields, onSuccess, onError, options);
     }
 

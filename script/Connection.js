@@ -1,27 +1,3 @@
- // Wait for device API libraries to load
-
-    document.addEventListener("deviceready", onDeviceReady, false);
-
-    // device APIs are available
-
-		function onDeviceReady() {
-
-	//Every 5sec check if there is a connection
-			setInterval(function(){
-					//If there is no connection there is an alert
-			if (navigator.connection.type == Connection.NONE)
-				{
-				 alert('Please Connect!' );
-
-				}
-			else
-					//If there is connection call checkConnection
-				{
-					 checkConnection();
-				 }
-
-			},5000);
-		}
 
 
         function checkConnection() {  //checkConnection specifies the type ofconnection
