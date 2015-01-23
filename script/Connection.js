@@ -24,7 +24,7 @@
 		}
 
 
-        function checkConnection() {  //checkConnection specifies thetype ofconnection
+        function checkConnection() {  //checkConnection specifies the type ofconnection
 
         		//The message depends on the type of the connection
             var State = navigator.connection.type;
