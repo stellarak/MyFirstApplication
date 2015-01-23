@@ -11,7 +11,7 @@
 			}
 			else if(State == Connection.WIFI)
 			{
-				alert("Device is connected to WiFi");
+				console.log("Device is connected to WiFi");
 			}
 			else if(State == Connection.CELL_2G)
 			{
