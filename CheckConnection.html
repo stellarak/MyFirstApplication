@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Check connection</title>
+    <title>Searching</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-   <!-- <script type="text/javascript" charset="utf-8"src="script/Connection.js"> </script>
--->
-<script type="text/javascript" charset="utf-8" src="phonegap-2.0.0.js"></script>
+  <script type="text/javascript" charset="utf-8" src="script/Connection.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
     <script type="text/javascript" charset="utf-8">
 
     // Wait for PhoneGap to load
@@ -16,12 +15,12 @@
     // PhoneGap is ready
     //
     function findcontact(form) {
-        // find all contacts with 'Bob' in any name field
+        // find all contacts with the user enters in the form
         console.log(navigator.contacts);
         var options = new ContactFindOptions();
         options.filter=form.lastname.value;
         var fields = ["displayName", "name"];
-        alert("You typed: "+ option.filter);
+        //alert("You typed: "+ option.filter);
         navigator.contacts.find(fields, onSuccess, onError, options);
     }
 
