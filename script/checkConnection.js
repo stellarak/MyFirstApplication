@@ -10,7 +10,7 @@
 					//If there is no connection there is an alert
 			if (navigator.connection.type == Connection.NONE)
 				{
-				 alert('Please Connect!' );
+				 alert('Please Connect!');
 
 				}
 			else
@@ -42,7 +42,7 @@
 								}
 				 }//eof if
 
-			},5000);
+			},5000);  //eof seinterval
 
 		} //eof checkConnection
 

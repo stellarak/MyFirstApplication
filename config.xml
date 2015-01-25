@@ -19,18 +19,28 @@
 
 <content src="index.html" />
 
-<preference name="phonegap-version" value="3.1.0" />
-<preference name="orientation" value="default" />
-<preference name="fullscreen" value="true" />
-
- 
- <!--<preference name="backgroundColor" value="0xFFF" />
+  <preference name="phonegap-version" value="3.1.0" />
+  <preference name="orientation" value="default" />
+  <preference name="target-device" value="universal" />
+  <preference name="fullscreen" value="false" />
+  <preference name="webviewbounce" value="false" />
+  <preference name="prerendered-icon" value="false" />
+  <preference name="detect-data-types" value="false" />
+  <preference name="exit-on-suspend" value="false" />
+  <preference name="show-splash-screen-spinner" value="false" />
+  <preference name="auto-hide-splash-screen" value="true" />
+  <preference name="disable-cursor" value="true" />
+  <preference name="android-minSdkVersion" value="8" />
+  <preference name="android-installLocation" value="preferExternal" />
+  <preference name="splash-screen-duration" value="3000" />
+  <preference name="load-url-timeout" value="45000" />
+  <preference name="backgroundColor" value="0xFFF" />
   <preference name="loadUrlTimeoutValue" value="20000" />
   <preference name="InAppBrowserStorageEnabled" value="true" />
   <preference name="disallowOverscroll" value="true" />
   <preference name="splashscreen" value="splash" />
-  <preference name="splashscreen" value="3000" />
--->
+  <preference name="splashscreenDelay" value="3000" />
+
 
     <feature name="http://api.phonegap.com/1.0/camera"/>
     <feature name="http://api.phonegap.com/1.0/contacts"/>
