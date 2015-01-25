@@ -12,7 +12,7 @@
 </description>
 
 <author href="YOUR URL" email="YOUR EMAIL">
-    YOUR NAME
+    Rakitzopoulou Stella
 </author>
 
 <access origin="*"/>
@@ -22,13 +22,14 @@
 <preference name="phonegap-version" value="3.1.0" />
 <preference name="orientation" value="default" />
 <preference name="fullscreen" value="true" />
-<preference name="splashscreen" value="splash" />
-<preference name="splashscreen" value="3000" />
+
  
  <!--<preference name="backgroundColor" value="0xFFF" />
   <preference name="loadUrlTimeoutValue" value="20000" />
   <preference name="InAppBrowserStorageEnabled" value="true" />
   <preference name="disallowOverscroll" value="true" />
+  <preference name="splashscreen" value="splash" />
+  <preference name="splashscreen" value="3000" />
 -->
 
     <feature name="http://api.phonegap.com/1.0/camera"/>

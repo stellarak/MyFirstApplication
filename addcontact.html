@@ -2,21 +2,21 @@
 <html>
 <head>
 	<title> Create new contact</title>
-
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="script/checklocation.js"> </script>  <!--load external scripts-->
+    <script type="text/javascript" charset="utf-8" src="script/Connection.js"> </script>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
 
 
  <script>
 	// Wait for device API libraries to load
 	    //
-	    document.addEventListener("deviceready", onDeviceReady, false);
+	    document.addEventListener("deviceready", checkConnection, false);
 
 	    // device APIs are available
 	    //
-    function onDeviceReady() {
-    	alert('Fill in the data');
-    	}
+
 </script>
 
 
@@ -46,39 +46,44 @@
 
 		function addcontact() {
 
-        // create
+        	// create
         var contact = navigator.contacts.create();
         contact.displayName = document.getElementById("frm").elements[1].value;
 
-        //specify both to support all devices
-        //store contact firstname and lastname taken fron the form
+        	//specify both to support all devices
+        	//store contact firstname and lastname taken fron the form
         var name = new ContactName();
         name.givenName = document.getElementById("frm").elements[0].value;
         name.familyName = document.getElementById("frm").elements[1].value;
         contact.name = name;
 
-    	// store contact phone numbers in ContactField[] taken from the form
+    		// store contact phone numbers in ContactField[] taken from the form
    		 var phoneNumbers = [];
    		 phoneNumbers[0] = new ContactField('mobile', document.getElementById("btn").value, true);
          contact.phoneNumbers = phoneNumbers;
 
-		//store the photo the user took
+			//store the photo the user took
 		var photos = [];
 		var photo[0] = new ContactField();
 		photo.value = document.getElementById('image').value;
 		photos.push(photo);
 		contact.photos = photos;
 
-        // save
+       		 // save
         contact.save(onSaveSuccess,onSaveError);
     }
 
-    // onSaveSuccess: Get a snapshot of the current contacts
+
+
+    // onSaveSuccess: give the lat-lon of the user
     //
     function onSaveSuccess(contact) {
+
         alert("Save Success");
         checklocation();
-         var r = confirm("Add location to the contact?");
+
+        	//when take the location,ask the user to add it to the contact
+        var r = confirm("Add location to the contact?");
 						   if( r == true ){
 
 
@@ -89,35 +94,39 @@
 						   }else{
 						    continue();    //ask user if he has another search
 
-   					}
+   							}
 
     }
 
-    // onSaveError: Failed to get the contacts
-    //
+    	// onSaveError: Failed to get the contacts
+    	//
     function onSaveError(contactError) {
         alert("Error = " + contactError.code);
     }
-    </script>
+ </script>
 
 
  <script>
+ 		//This function is called when the user push the link "Upload photo" in the form
     function takephoto() {
       navigator.camera.getPicture(onSuccess, onFail,{
-	          quality : 50,  //the quqlity is 50%
+	          quality : 50,     //the quality is 50%
 	          sourceType : Camera.PictureSourceType.CAMERA,
-	          targetWidth: 200,   //Dimensions of the image on the screen
+	          targetWidth: 200,     //Dimensions of the image on the screen
 	          targetHeight: 200 });
 
     }
-
+		// Once the user take the photo it is displayed on the screen
     function onSuccess(imageData)  {
 
     	var image = document.getElementById('image');
     	image.src = "data:image/jpg; base64, " + imageData;
     	image.style.display = 'block';
+
     }
 
+
+			//If there is an error there is an alert
     function onFail(message) {
 
     	alert('Failed because: ' + message);
@@ -126,28 +135,27 @@
 </script>
 
 <script>
-thiw function asks the userif he has another search contact to do
- function continue() {
+		//this function asks the user if he has another search to do
 
-				   var retVal = confirm("Search another contact?");
+	function continue() {
 
-				  if( retVal == true ){
-				  //if he has another search the form appears again
-				      window.location.href = 'CheckContact.html';
-				   }else{
-				   // if he doesn't have any other search he goes to the next page
-					window.location.href = 'qrcode.html';
-   					}
+	   var retVal = confirm("Search another contact?");
+
+	  if( retVal == true ){
+	  		//if he has another search the form appears again
+		window.location.href = 'CheckContact.html';
+	   }else{
+	   		// if he doesn't have any other search he goes to the next page
+		window.location.href = 'qrcode.html';
+		}
     }
 
-    </script>
+ </script>
 
 
 
- }
 
 
-<script>
 
 
 </body>

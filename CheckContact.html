@@ -12,49 +12,23 @@
 
    // Wait for device API libraries to load
 
-    document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("deviceready", checkConnection, false);
 
     // device APIs are available
+	// PhoneGap is ready
 
-		function onDeviceReady() {
+		//This function is called when the user pushes the button
 
-	//Every 5sec check if there is a connection
-
-			setInterval(function(){
-					//If there is no connection there is an alert
-			if (navigator.connection.type == Connection.NONE)
-				{
-				 alert('Please Connect!' );
-
-				}
-			else
-					//If there is connection call checkConnection
-				{
-					 alert('you have Connect!' );
-
-					 checkConnection();
-				 }
-
-			},5000);
-		}
-
-
-    // Wait for PhoneGap to load
-
-    document.addEventListener("deviceready", findcontact, false);
-
-    // PhoneGap is ready
-
-    function findcontact(form) {
+    function findcontact(myform) {
         // find the contact user enters in the form
         console.log(navigator.contacts);
         var options = new ContactFindOptions();
-        options.filter=document.getElementById("myform").elements[0].value;;
+        options.filter=document.getElementById("myform").elements[0].value;
         var fields = ["displayName", "name"];
         navigator.contacts.find(fields, onSuccess, onError, options);
     }
 
-    // onSuccess: Get a snapshot of the current contacts
+    // onSuccess: I make an update
     //
     function onSuccess(contacts) {
 
@@ -68,13 +42,14 @@
     }
 
     // onError: Failed to get the contacts
-    //
+    //Ask the user to add the unlisted contact
+
     function onError(contactError) {
 
 				   var retVal = confirm("Add Conatct?");
-				   if( retVal == true ){
+				   if( retVal == true ){   //if he wants to add the contact we call the appropriate function
 				      window.location.href = 'addcontact.html';
-				   }else{
+				   }else{                   // if he doesn't we exit the application
 					navigator.app.exitApp();
    					}
     }
@@ -84,6 +59,7 @@
 
   </head>
   <body>
+            <!--Create the search form-->
 
 		<form id="myform">
 		Last name:<br>
