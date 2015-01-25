@@ -13,12 +13,19 @@
 
    // Wait for device API libraries to load
 
-    document.addEventListener("deviceready", checkConnection, false);
+    document.addEventListener("deviceready", onDeviceReady, false);
 
+
+function onDeviceReady() {
+alert("hello");
+}
     // device APIs are available
 	// PhoneGap is ready
 
 		//This function is called when the user pushes the button
+
+
+
 
     function findcontact(myform) {
         // find the contact user enters in the form
