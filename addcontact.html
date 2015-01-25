@@ -1,0 +1,154 @@
+<!doctype html?>
+<html>
+<head>
+	<title> Create new contact</title>
+
+    <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+
+
+ <script>
+	// Wait for device API libraries to load
+	    //
+	    document.addEventListener("deviceready", onDeviceReady, false);
+
+	    // device APIs are available
+	    //
+    function onDeviceReady() {
+    	alert('Fill in the data');
+    	}
+</script>
+
+
+</head>
+<body>
+	<form id="frm">      <!--Create the  form -->
+		Firstname: <input type="text" name="firstname" id="First" >
+		<br><br>
+		Lastname:  <input type="text" name="lastname" id="Last">
+  		<br><br>
+  		Mobile:    <input type="text" name="mobile" id="Mob" >
+  		<br><br>
+  	</form>
+  		<a href="#" onClick="takephoto()"> <h4>Upload Photo</h4>
+  		<br><br>
+  		<img id="image" src="" />
+  		<br><br>
+
+		<br><br>
+		<input type="button" onclick="addcontact()" value="Add Contact" id="btn">
+		<br><br>
+		<div id="googleMap" style="width:400px;height:350px;"></div>
+
+<script>
+
+			//This function is called when the user pushes the button "Add Contact"
+
+		function addcontact() {
+
+        // create
+        var contact = navigator.contacts.create();
+        contact.displayName = document.getElementById("frm").elements[1].value;
+
+        //specify both to support all devices
+        //store contact firstname and lastname taken fron the form
+        var name = new ContactName();
+        name.givenName = document.getElementById("frm").elements[0].value;
+        name.familyName = document.getElementById("frm").elements[1].value;
+        contact.name = name;
+
+    	// store contact phone numbers in ContactField[] taken from the form
+   		 var phoneNumbers = [];
+   		 phoneNumbers[0] = new ContactField('mobile', document.getElementById("btn").value, true);
+         contact.phoneNumbers = phoneNumbers;
+
+		//store the photo the user took
+		var photos = [];
+		var photo[0] = new ContactField();
+		photo.value = document.getElementById('image').value;
+		photos.push(photo);
+		contact.photos = photos;
+
+        // save
+        contact.save(onSaveSuccess,onSaveError);
+    }
+
+    // onSaveSuccess: Get a snapshot of the current contacts
+    //
+    function onSaveSuccess(contact) {
+        alert("Save Success");
+        checklocation();
+         var r = confirm("Add location to the contact?");
+						   if( r == true ){
+
+
+						      setlocation();   //update contact with location
+
+						    continue();   //ask user if he has another search
+
+						   }else{
+						    continue();    //ask user if he has another search
+
+   					}
+
+    }
+
+    // onSaveError: Failed to get the contacts
+    //
+    function onSaveError(contactError) {
+        alert("Error = " + contactError.code);
+    }
+    </script>
+
+
+ <script>
+    function takephoto() {
+      navigator.camera.getPicture(onSuccess, onFail,{
+	          quality : 50,  //the quqlity is 50%
+	          sourceType : Camera.PictureSourceType.CAMERA,
+	          targetWidth: 200,   //Dimensions of the image on the screen
+	          targetHeight: 200 });
+
+    }
+
+    function onSuccess(imageData)  {
+
+    	var image = document.getElementById('image');
+    	image.src = "data:image/jpg; base64, " + imageData;
+    	image.style.display = 'block';
+    }
+
+    function onFail(message) {
+
+    	alert('Failed because: ' + message);
+    }
+
+</script>
+
+<script>
+thiw function asks the userif he has another search contact to do
+ function continue() {
+
+				   var retVal = confirm("Search another contact?");
+
+				  if( retVal == true ){
+				  //if he has another search the form appears again
+				      window.location.href = 'CheckContact.html';
+				   }else{
+				   // if he doesn't have any other search he goes to the next page
+					window.location.href = 'qrcode.html';
+   					}
+    }
+
+    </script>
+
+
+
+ }
+
+
+<script>
+
+
+</body>
+</html>

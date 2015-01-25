@@ -30,6 +30,8 @@
 			else
 					//If there is connection call checkConnection
 				{
+					 alert('you have Connect!' );
+
 					 checkConnection();
 				 }
 
@@ -42,12 +44,12 @@
     document.addEventListener("deviceready", findcontact, false);
 
     // PhoneGap is ready
-    //
+
     function findcontact(form) {
-        // find all contacts with the user enters in the form
+        // find the contact user enters in the form
         console.log(navigator.contacts);
         var options = new ContactFindOptions();
-        options.filter=form.lastname.value;
+        options.filter=document.getElementById("myform").elements[0].value;;
         var fields = ["displayName", "name"];
         navigator.contacts.find(fields, onSuccess, onError, options);
     }
@@ -55,15 +57,26 @@
     // onSuccess: Get a snapshot of the current contacts
     //
     function onSuccess(contacts) {
-        for (var i=0; contacts.length>i; i++) {
-            console.log("Display Name = " + contacts[i].displayName + "tel=" + contacts[i].phoneNumbers[i].value);
-        }
+
+		   var retVal = confirm("Update information of this contact?");
+		   if( retVal == true ){
+		      updatecontact();
+		   }else{
+
+   			}
+
     }
 
     // onError: Failed to get the contacts
     //
     function onError(contactError) {
-        alert('onError!');
+
+				   var retVal = confirm("Add Conatct?");
+				   if( retVal == true ){
+				      window.location.href = 'addcontact.html';
+				   }else{
+					navigator.app.exitApp();
+   					}
     }
 
     </script>
@@ -72,12 +85,12 @@
   </head>
   <body>
 
-		<form action="SearchLastname.html">
+		<form id="myform">
 		Last name:<br>
-		<input type="text" name="lastname" >
+		<input type="text" name="lastname" id='Lastname' >
 		<br><br>
 		<input type="Button" value="Search" onClick="findcontact(this.form)">
 
-</form>
+		</form>
   </body>
 </html>

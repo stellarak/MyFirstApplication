@@ -1,0 +1,47 @@
+<!doctype html?>
+<html>
+<head>
+	<title> Scan QR code</title>
+	 <script type="text/javascript" src="cordova-2.7.0.js"></script>
+	 <script type="text/javascript" src="barcodescanner.js"></script>
+	 <script type="text/javascript">
+
+
+	          function scanCode(){
+	                window.plugins.barcodeScanner.scan(
+	                    function(result){
+	                        alert("Scanned Code: " + result.text
+	                        + ". Format: " + result.format
+	                        + ". Cancelled: " + result.cancelled);
+	                    },
+	                    function(error){
+	                        alert("Scan failed: " + error);
+	                    }
+	                );
+	            }
+
+	            function encodeData(){
+	                var data = document.getElementById("data").value;
+	                if (data != ''){
+	                    window.plugins.barcodeScanner.encode(
+	                        BarcodeScanner.Encode.TEXT_TYPE, data,
+	                        function(success){
+	                            alert("Encode success: " + success);
+	                        },
+	                        function(fail){
+	                            alert("Encoding failed: " + fail);
+	                        }
+	                    );
+	                }
+	                else{
+	                    alert("Please enter some data.");
+	                    return false;
+	                }
+	            }
+        </script>
+</head>
+<body>
+
+
+</body>
+</html>
