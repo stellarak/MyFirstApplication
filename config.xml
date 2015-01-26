@@ -38,8 +38,8 @@
   <preference name="loadUrlTimeoutValue" value="20000" />
   <preference name="InAppBrowserStorageEnabled" value="true" />
   <preference name="disallowOverscroll" value="true" />
-  <preference name="splashscreen" value="splash" />
-  <preference name="splashscreenDelay" value="3000" />
+  <preference name="SplashScreen" value="splash" />
+  <preference name="SplashScreenDelay" value="3000" />
 
 
     <feature name="http://api.phonegap.com/1.0/camera"/>
@@ -76,6 +76,14 @@
 <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
 
 
+<!-- Splash Screen -->
+<gap:splash src="splash.png" />
+<platform name="android">
+    <splash src="res/screen/android/hdpi.png" density="hdpi"/>
+    <splash src="res/screen/android/ldpi.png" density="ldpi"/>
+    <splash src="res/screen/android/mdpi.png" density="mdpi"/>
+    <splash src="res/screen/android/xhdpi.png" density="xhdpi"/>
+  </platform>
 
 
 <gap:config-file platform="android" parent="/manifest">
