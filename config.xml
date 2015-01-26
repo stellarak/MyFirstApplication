@@ -57,23 +57,24 @@
 
 
 <plugins>
-    <plugin name="App" value="org.apache.cordova.App"/>
-    <plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
-    <plugin name="Device" value="org.apache.cordova.Device"/>
-    <plugin name="Accelerometer" value="org.apache.cordova.AccelListener"/>
-    <plugin name="Compass" value="org.apache.cordova.CompassListener"/>
-    <plugin name="Media" value="org.apache.cordova.AudioHandler"/>
-    <plugin name="Camera" value="org.apache.cordova.CameraLauncher"/>
-    <plugin name="Contacts" value="org.apache.cordova.ContactManager"/>
-    <plugin name="File" value="org.apache.cordova.FileUtils"/>
-    <plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager"/>
-    <plugin name="Notification" value="org.apache.cordova.Notification"/>
-    <plugin name="Storage" value="org.apache.cordova.Storage"/>
-    <plugin name="Temperature" value="org.apache.cordova.TempListener"/>
-    <plugin name="FileTransfer" value="org.apache.cordova.FileTransfer"/>
-    <plugin name="Capture" value="org.apache.cordova.Capture"/>
-    <plugin name="Battery" value="org.apache.cordova.BatteryListener"/>
-    <plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
-    <plugin name="BarcodeScanner" value="com.phonegap.plugins.barcodescanner.BarcodeScanner"/>
+    <gap:plugin name="App" value="org.apache.cordova.App"/>
+    <gap:plugin name="Geolocation" value="org.apache.cordova.GeoBroker"/>
+    <gap:plugin name="Device" value="org.apache.cordova.Device"/>
+    <gap:plugin name="Accelerometer" value="org.apache.cordova.AccelListener"/>
+    <gap:plugin name="Compass" value="org.apache.cordova.CompassListener"/>
+    <gap:plugin name="Media" value="org.apache.cordova.AudioHandler"/>
+    <gap:plugin name="Camera" value="org.apache.cordova.CameraLauncher"/>
+    <gap:plugin name="Contacts" value="org.apache.cordova.ContactManager"/>
+    <gap:plugin name="File" value="org.apache.cordova.FileUtils"/>
+    <gap:plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager"/>
+    <gap:plugin name="Notification" value="org.apache.cordova.Notification"/>
+    <gap:plugin name="Storage" value="org.apache.cordova.Storage"/>
+    <gap:plugin name="Temperature" value="org.apache.cordova.TempListener"/>
+    <gap:plugin name="FileTransfer" value="org.apache.cordova.FileTransfer"/>
+    <gap:plugin name="Capture" value="org.apache.cordova.Capture"/>
+    <gap:plugin name="Geolocation" value="org.apache.cordova.core.GeoBroker" />
+    <gap:plugin name="Battery" value="org.apache.cordova.BatteryListener"/>
+    <gap:plugin name="SplashScreen" value="org.apache.cordova.SplashScreen"/>
+    <gap:plugin name="BarcodeScanner" value="com.phonegap.plugins.barcodescanner.BarcodeScanner"/>
 </plugins>
 </widget>
