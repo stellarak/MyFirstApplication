@@ -5,7 +5,6 @@
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
-  <!-- <script type="text/javascript" charset="utf-8" src="script/Connection.js"> </script>-->
     <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
 
 
@@ -16,24 +15,23 @@
     document.addEventListener("deviceready", onDeviceReady, false);
 
 
-function onDeviceReady() {
-alert("hello");
-checkConnection();
-}
+	function onDeviceReady() {
+	alert("hello");
+	checkConnection();
+	}
 
 
   function checkConnection() {  //checkConnection specifies the type of connection
 
-alert("working?");
+		alert("working?");
 
 	//Every 5sec check if there is a connection
 
-			setInterval(function(){
+		<!--	setInterval(function(){-->
 					//If there is no connection there is an alert
-			if (navigator.connection.type == Connection.NONE)
+			if (navigator.network.connection.type == Connection.NONE)
 				{
 				 alert('Please Connect!');
-
 
 				}
 			else
@@ -41,7 +39,7 @@ alert("working?");
 				{
 
 					//The message depends on the type of the connection
-					            var State = navigator.connection.type;
+					            var State = navigator.network.connection.type;
 
 								if (State == Connection.ETHERNET)
 								{
@@ -66,7 +64,7 @@ alert("working?");
 								}
 				 }//eof if
 
-			},5000);  //eof setinterval
+			<!--},5000);  //eof setinterval-->
 
 		} //eof checkConnection
 
