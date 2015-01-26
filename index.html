@@ -1,19 +1,21 @@
+
 <!doctype html?>
 <html>
 <head>
-	<title> My First Application</title>
-	<!--<meta http-equiv="refresh" content="3;url=CheckContact.html">-->
+	<title>My First Application</title>
 </head>
 <body>
 <script>
-
  document.addEventListener("deviceready", onDeviceReady, false);
- function onDeviceReady() {
- alert("hello");
- navigator.splashscreen.show();
+ <!--device APIs have loaded and are ready to access-->
+
+ function onDeviceReady() {   <!--Show SplashScreen-->
+	 navigator.splashscreen.show();
  }
+
+ 		<!--Go to next page-->
  window.location.href = 'CheckContact.html';
  </script>
-
 </body>
 </html>
+
