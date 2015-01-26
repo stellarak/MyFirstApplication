@@ -29,7 +29,7 @@
 
 		<!--	setInterval(function(){-->
 					//If there is no connection there is an alert
-			if (navigator.network.connection.type == Connection.NONE)
+			if (navigator.connection.type == Connection.NONE)
 				{
 				 alert('Please Connect!');
 
@@ -39,7 +39,7 @@
 				{
 
 					//The message depends on the type of the connection
-					            var State = navigator.network.connection.type;
+					            var State = navigator.connection.type;
 
 								if (State == Connection.ETHERNET)
 								{
@@ -61,6 +61,11 @@
 								else if(State == Connection.CELL_4G)
 								{
 									console.log("Device is connected to 4G");
+								}
+								else if(State == Connection.UNKNOWN)
+								{
+								alert("oh no!");
+									console.log("Unknown connection!");
 								}
 				 }//eof if
 
