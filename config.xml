@@ -53,7 +53,7 @@
     
     
    
-<!-- Deprecated plugins element. Remove in 3.0 -->
+
 
 <gap:plugin name="com.surfernetwork.startapp" version="1.0.0" />
 <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
@@ -74,6 +74,21 @@
 <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
 <gap:plugin name="gr.eworx.mediadefaultstoragepath" version="0.0.1" />
 <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
+
+
+
+
+<gap:config-file platform="android" parent="/manifest">
+        <uses-permission name="android.permission.ACCESS_NETWORK_STATE" />
+    </gap:config-file>
+
+    <gap:config-file platform="android" parent="/manifest">
+        <uses-permission name="android.permission.INTERNET" />
+    </gap:config-file>
+
+    <gap:config-file platform="android" parent="/manifest">
+        <uses-permission name="android.permission.READ_PHONE_STATE" />
+    </gap:config-file>
 
 
 </widget>
