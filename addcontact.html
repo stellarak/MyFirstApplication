@@ -4,41 +4,45 @@
 	<title> Create new contact</title>
 	<script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
-    <script type="text/javascript" charset="utf-8" src="script/checklocation.js"> </script>  <!--load external scripts-->
-    <script type="text/javascript" charset="utf-8" src="script/Connection.js"> </script>
 	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
 
 
  <script>
 	// Wait for device API libraries to load
 	    //
-	    document.addEventListener("deviceready", checkConnection, false);
-
+	    document.addEventListener("deviceready", onDeviceReady, false);
 	    // device APIs are available
-	    //
 
+		function onDeviceReady() {
+		document.getElementById("lastname").value = window.localStorage.getItem("Last_name");
+		}
 </script>
 
 
 </head>
+
+
+
 <body>
-	<form id="frm">      <!--Create the  form -->
-		Firstname: <input type="text" name="firstname" id="First" >
+
+		<h1>Add New Contact</h1> <br>
+	<form id="frm" action="form_action.asp">      <!--Create the  form -->
+
+		<input type="text" name="firstname" id="First" placeholder="First name" class="text">
 		<br><br>
-		Lastname:  <input type="text" name="lastname" id="Last">
+		<input type="text" name="lastname" id="Last" placeholder="Last name" class="text">
   		<br><br>
-  		Mobile:    <input type="text" name="mobile" id="Mob" >
+  		<input type="text" name="mobile" id="Mob" placeholder="Mobile tel." class="text">
   		<br><br>
   	</form>
   		<a href="#" onClick="takephoto()"> <h4>Upload Photo</h4>
   		<br><br>
-  		<img id="image" src="" />
+  		<img id="image" src="">
   		<br><br>
-
 		<br><br>
-		<input type="button" onclick="addcontact()" value="Add Contact" id="btn">
+		<button onclick="addcontact()" id="btn">Add Contact</button>
 		<br><br>
-		<div id="googleMap" style="width:400px;height:350px;"></div>
 
 <script>
 
@@ -46,64 +50,13 @@
 
 		function addcontact() {
 
-        	// create
-        var contact = navigator.contacts.create();
-        contact.displayName = document.getElementById("frm").elements[1].value;
+		window.localStorage.setItem("First_name",document.getElementById("frm").elements.item(0).value);
+		window.localStorage.setItem("Last_name",document.getElementById("frm").elements.item(1).value);
+		window.localStorage.setItem("Mobile",document.getElementById("frm").elements.item(2).value);
+		window.localStorage.setItem("Photo",document.getElementById("image").value;
+		window.location = "checklocation.html";
 
-        	//specify both to support all devices
-        	//store contact firstname and lastname taken fron the form
-        var name = new ContactName();
-        name.givenName = document.getElementById("frm").elements[0].value;
-        name.familyName = document.getElementById("frm").elements[1].value;
-        contact.name = name;
-
-    		// store contact phone numbers in ContactField[] taken from the form
-   		 var phoneNumbers = [];
-   		 phoneNumbers[0] = new ContactField('mobile', document.getElementById("btn").value, true);
-         contact.phoneNumbers = phoneNumbers;
-
-			//store the photo the user took
-		var photos = [];
-		var photo[0] = new ContactField();
-		photo.value = document.getElementById('image').value;
-		photos.push(photo);
-		contact.photos = photos;
-
-       		 // save
-        contact.save(onSaveSuccess,onSaveError);
-    }
-
-
-
-    // onSaveSuccess: give the lat-lon of the user
-    //
-    function onSaveSuccess(contact) {
-
-        alert("Save Success");
-        checklocation();
-
-        	//when take the location,ask the user to add it to the contact
-        var r = confirm("Add location to the contact?");
-						   if( r == true ){
-
-
-						      setlocation();   //update contact with location
-
-						    continue();   //ask user if he has another search
-
-						   }else{
-						    continue();    //ask user if he has another search
-
-   							}
-
-    }
-
-    	// onSaveError: Failed to get the contacts
-    	//
-    function onSaveError(contactError) {
-        alert("Error = " + contactError.code);
-    }
- </script>
+		}
 
 
  <script>
@@ -118,42 +71,17 @@
     }
 		// Once the user take the photo it is displayed on the screen
     function onSuccess(imageData)  {
-
     	var image = document.getElementById('image');
     	image.src = "data:image/jpg; base64, " + imageData;
     	image.style.display = 'block';
-
     }
 
 
 			//If there is an error there is an alert
     function onFail(message) {
-
     	alert('Failed because: ' + message);
     }
 
 </script>
-
-<script>
-		//this function asks the user if he has another search to do
-
-	function continue() {
-
-	   var retVal = confirm("Search another contact?");
-
-	  if( retVal == true ){
-	  		//if he has another search the form appears again
-		window.location.href = 'CheckContact.html';
-	   }else{
-	   		// if he doesn't have any other search he goes to the next page
-		window.location.href = 'qrcode.html';
-		}
-    }
-
- </script>
-
-
-
-
 </body>
 </html>

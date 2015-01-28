@@ -4,39 +4,48 @@
 	<title> Scan QR code</title>
 	 <script type="text/javascript" src="cordova-2.7.0.js"></script>
 	 <script type="text/javascript" src="barcodescanner.js"></script>
-	 <script type="text/javascript">
+	 <script type="text/javascript"></script>
+	 <link rel="stylesheet" type="text/css" href="mystyle.css">
 
 
-	          function scanCode(){
-	                window.plugins.barcodeScanner.scan(
-	                    function(result){
-	                        alert("Scanned Code: " + result.text
-	                        + ". Format: " + result.format
-	                        + ". Cancelled: " + result.cancelled);
-	                    },
-	                    function(error){
-	                        alert("Scan failed: " + error);
-	                    }
-	                );
-	            }
+<script>
 
-	            function encodeData(){
-	                var data = document.getElementById("data").value;
-	                if (data != ''){
-	                    window.plugins.barcodeScanner.encode(
-	                        BarcodeScanner.Encode.TEXT_TYPE, data,
-	                        function(success){
-	                            alert("Encode success: " + success);
-	                        },
-	                        function(fail){
-	                            alert("Encoding failed: " + fail);
-	                        }
-	                    );
-	                }
-	                else{
-	                    alert("Please enter some data.");
-	                    return false;
-	                }
+	// Wait for device API libraries to load
+		document.addEventListener("deviceready", onDeviceReady, false);
+		// device APIs are available
+
+		function onDeviceReady() {
+
+			//ask the user about the qrcode
+		 var retVal = confirm("Scan a QR CODE?");
+		if( retVal == true ){
+						//scan the code
+					scanCode();
+				   }else{
+						// otherwise show an alert and exit the appliation
+					alert('Thank you for trying my application!')
+					navigator.app.exitApp();
+					}
+
+
+		//This function scans thw qrcode and show the result using an alert
+	function scanCode(){
+			window.plugins.barcodeScanner.scan(
+				function(result){
+					alert("Scanned Code: " + result.text
+					+ ". Format: " + result.format
+					+ ". Cancelled: " + result.cancelled);
+				},
+				function(error){
+					alert("Scan failed: " + error);
+				}
+			);
+		}// eof scanCode
+	navigator.app.exitApp();
+	 }//eof on DeviceReady
+
+
+
 	            }
         </script>
 </head>

@@ -1,54 +1,139 @@
+<!doctype html?>
+<html>
+<head>
+	<title>Check Location</title>
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
+
+	<script>
+	  document.addEventListener("deviceready", onDeviceReady, false);
+	   <!--device APIs have loaded and are ready to access-->
+
+	   function onDeviceReady() {
+	   		//Find users location
+	   	checklocation();
+			//Retrive all the data
+	   	fname = window.localStorage.getItem("First_name");
+	   	lname = window.localStorage.getItem("Last_name");
+	   	mob = window.localStorage.getItem("Mobile");
+	   	photo = window.localStorage.getItem("Photo");
+	   	lat = window.localStorage.getItem("latitude");
+	   	lon = window.localStorage.getItem("longitude");
+
+			//Finally save data on device
+			//Create new contact object
+		var contact = navigator.contacts.create();
+		contact.displayName = lname;
+
+			//store contact firstname and lastname taken fron the form
+		var name = new ContactName();
+		name.givenName = fname;
+		name.familyName = lname;
+		contact.name = name;
+
+			// store contact's mobile phone numbers in ContactField[] taken from the form
+		 var phoneNumbers = [];
+		 phoneNumbers[0] = new ContactField('mobile', mob, true);
+		 contact.phoneNumbers = phoneNumbers;
+
+			//store photo the user took nd replace old if exists
+		var photos = [];
+		var photo[0] = new ContactField();
+		photo.value = photo;
+		photos.push(photo);
+		contact.photos = photos;
+
+
+			//ask user about storing the location
+		var retVal = confirm("Save location");
+		if( retVal == true ){
+			//if he agrees save location
+			contact.note = lat + "," + lon;
+			} //eof if
+
+
+			 // save
+		contact.save(onSaveSuccess,onSaveError);
+
+
+			// onSaveSuccess: give the lat-lon of the user
+		function onSaveSuccess(contact) {
+			alert("Saved Successfully");
+			}
+
+
+			// onSaveError: Failed to get the contacts
+		function onSaveError(contactError) {
+			alert("Error = " + contactError.code);
+		} //eof onSaveError
+
+			//Ask user if has another search
+			continue();
+
+
+
+		//this function asks the user if he has another search to do
+
+		function continue() {
+
+		   var retVal = confirm("Search another contact?");
+
+		  if( retVal == true ){
+				//if he has another search the form appears again
+			window.location.href = 'CheckContact.html';
+		   }else{
+				// if he doesn't have any other search he goes to the next page
+			window.location.href = 'qrcode.html';
+			}
+			}//eof continue
+
+	}// eof onDeviceReady
+
+ </script>
+
+</head>
+<body>
+	 <div id="googleMap" style="width:400px;height:350px;"></div>
+<script>
 
 function checklocation(){
-
-
+			// Get latitude andlongitute "Position" properties from the geolocation
         navigator.geolocation.getCurrentPosition(onSuccess, onError);
-		var check = false;
-
-	// Get latitude andlongitute "Position" properties from the geolocation
-    //
 
     function onSuccess(position) {
-
     	var lat = position.coords.latitude;
     	var lon = position.coords.longitude;
-    	check=true;
-    }
+    		//Store the latitude and longitude
+    	window.localStorage.setItem("latitude",lat);
+    	window.localStorage.setItem("longitute",lon);
 
+    		//Show the map on screen
+    	initialize(lat,lon);
 
-    // Show an alert if there is a problem getting the geolocation
-    //
+    	// Show an alert if there is a problem getting the geolocation
     function onError() {
         alert('onError!');
     }
-
-
-if (check==true){
-	initilize();
-
-
-} //eof if
-
-
   }  //eof checklocation
 
-
-
-  function initialize() {
-
+		//This function draws the map on the screen
+  function initialize(lat,lon) {             //It's a road map with default zoom
+  									//and the location of the user is at the centre of the screen
    var mapProp = {
     center:new google.maps.LatLng(lat,lon),
     zoom: 7,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  };
+    mapTypeId: google.maps.MapTypeId.ROADMAP  };
+
+
   var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-
-  //The Marker constructor creates a marker pointingto user's potition
+  		//The Marker constructor creates a marker pointingto user's potition
   var marker=new google.maps.Marker({
     position:myCenter,
     });
-
     marker.setMap(map);
 
   } //eof initialize
+
+   </script>
+  </body>
+</html>

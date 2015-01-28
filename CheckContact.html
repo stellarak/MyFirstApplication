@@ -1,69 +1,38 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Searching</title>
+    <title>Check Connection</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
     <script type="text/javascript" charset="utf-8" src="phonegap-3.1.0.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="mystyle.css">
 
  <script>
 
-   // Wait for device API libraries to load
+      document.addEventListener("deviceready", onDeviceReady, false);
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-
+ 	// device APIs are available
+	// PhoneGap is ready
 
 	function onDeviceReady() {
-	alert("hello");
-
-<!--function checkConnection() {-->
-var networkState = navigator.connection.type;
-
-var states = {};
-states[Connection.UNKNOWN] = 'Unknown connection';
-states[Connection.ETHERNET] = 'Ethernet connection';
-states[Connection.WIFI] = 'WiFi connection';
-states[Connection.CELL_2G] = 'Cell 2G connection';
-states[Connection.CELL_3G] = 'Cell 3G connection';
-states[Connection.CELL_4G] = 'Cell 4G connection';
-states[Connection.CELL] = 'Cell generic connection';
-states[Connection.NONE] = 'No network connection';
-
-
-if (networkState == Connection.NONE) {
-alert('Please Connect!');
-}
-
-else{
-alert('Connection type: ' + states[networkState]);
-
-}
-
-}
-</script>
-<!--checkConnection();
+	checkConnection();
 	}
 
 
-  function checkConnection() {  //checkConnection specifies the type of connection
+		//checkConnection specifies the type of connection
+  function checkConnection() {
 
-		alert("working?");
-
-	//Every 5sec check if there is a connection
-
+		//Every 5sec check if there is a connection
 			setInterval(function(){
 					//If there is no connection there is an alert
 			if (navigator.connection.type == Connection.NONE)
 				{
 				 alert('Please Connect!');
-
 				}
 			else
-					//If there is connection call checkConnection
+					//If there is connection check the type
 				{
-
 					//The message depends on the type of the connection
 					            var State = navigator.connection.type;
 
@@ -73,7 +42,6 @@ alert('Connection type: ' + states[networkState]);
 								}
 								else if(State == Connection.WIFI)
 								{
-									alert("YES!");
 									console.log("Device is connected to WiFi");
 								}
 								else if(State == Connection.CELL_2G)
@@ -90,74 +58,82 @@ alert('Connection type: ' + states[networkState]);
 								}
 								else if(State == Connection.UNKNOWN)
 								{
-								alert("oh no!");
 									console.log("Unknown connection!");
 								}
 				 }//eof if
 
 			},5000);  //eof setinterval
 
-		} //eof checkConnection -->
+		} //eof checkConnection
 
-
-<script>
-
-    // device APIs are available
-	// PhoneGap is ready
-
-		//This function is called when the user pushes the button
 
 
 
 
+		//This function is called when the user pushes the button
+		//and finds the contact user enters in the form
     function findcontact(myform) {
-        // find the contact user enters in the form
         console.log(navigator.contacts);
+        	//The options for search
         var options = new ContactFindOptions();
-        options.filter=document.getElementById("myform").elements[0].value;
+        	//Get only the first contact with this option
+        option.multiple=false;
+       		//Search the name user entered in the first element of the form
+        options.filter=document.getElementById("myform").elements.item(0).value;
+        	//Search the in fields 'name' and 'displayName'
         var fields = ["displayName", "name"];
+        	//Start the search
         navigator.contacts.find(fields, onSuccess, onError, options);
     }
 
-    // onSuccess: I make an update
-    //
+    // onSuccess: the user finds a contact in the list or not
     function onSuccess(contacts) {
-
-		   var retVal = confirm("Update information of this contact?");
-		   if( retVal == true ){
-		      updatecontact();
-		   }else{
-
-   			}
-
-    }
-
-    // onError: Failed to get the contacts
-    //Ask the user to add the unlisted contact
-
-    function onError(contactError) {
-
-				   var retVal = confirm("Add Conatct?");
-				   if( retVal == true ){   //if he wants to add the contact we call the appropriate function
-				      window.location.href = 'addcontact.html';
+    			//If there is not such a conatct
+			if (contacts.length==0){
+						//ask the user to add it as new
+					var retVal = confirm("Add Contact?");
+				   if( retVal == true ){   //if he wants to add the contact store the name and load the next page
+					  windows.localStorage.setItem("Last_name",document.getElementById("myform").elements.item(0).value;
+					  window.location.href = 'addcontact.html';
 				   }else{                   // if he doesn't we exit the application
 					navigator.app.exitApp();
-   					}
+					} //eof if
+   			} else {
+						//If there is a contact in the list ask for an update
+					var retVal = confirm("Update information of this contact?");
+					 if( retVal == true ){ 		//if the user wants to update the contact
+					 updatecontact();
+					 }else{
+							//does nothing
+					} //eof if
+
+
+   			} //eof if
+
+
+			}// eof onSuccess
+
+
+    // onError: Failed to get the contacts an alert is created
+
+    function onError(contactError) {
+		alert('onError!');
     }
 
     </script>
 
 
   </head>
+
+
   <body>
-            <!--Create the search form-->
+  		<h1> Find Contact</h1><br>
+  		            <!--Create the search form-->
+		<form id="myform" action="form_action.asp">
 
-		<form id="myform">
-		Last name:<br>
-		<input type="text" name="lastname" id='Lastname' >
+		<input type="text" name="lastname" id='Lastname' placeholder='last name' class="text">
 		<br><br>
-		<input type="Button" value="Search" onClick="findcontact(this.form)">
-
+		<input type="Button" value="Search" onClick="findcontact(this.form)" class="button">
 		</form>
   </body>
 </html>
