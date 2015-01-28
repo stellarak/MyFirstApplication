@@ -39,7 +39,7 @@
   <preference name="InAppBrowserStorageEnabled" value="true" />
   <preference name="disallowOverscroll" value="true" />
   <preference name="SplashScreen" value="splash" />
-  <preference name="SplashScreenDelay" value="3000" />
+  <preference name="SplashScreenDelay" value="8000" />
 
 
     <feature name="http://api.phonegap.com/1.0/camera"/>
